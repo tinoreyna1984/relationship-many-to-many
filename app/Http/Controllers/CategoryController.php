@@ -9,7 +9,9 @@ class CategoryController extends Controller
 {
     // devuelve todas las categorías
     public function getCategories(){
-        return response()->json(Category::all(), 200);
+        //return response()->json(Category::all(), 200); // devuelve todas las categorías
+        $categories = Category::with('products')->get(); // devuelve categorías anidando los productos
+        return response()->json($categories, 200);
     }
 
     // devuelve una categoría por ID

@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function getProduct($id){
         $product = Product::find($id);
         if(is_null($product)){
-            return response()->json(['msg'=>'Empleado no encontrado'],404);
+            return response()->json(['msg'=>'Producto no encontrado'],404);
         }
         return response()->json($product::find($id), 200);
     }
@@ -39,7 +39,7 @@ class ProductController extends Controller
     public function updProduct(Request $request, $id){
         $product = Product::find($id);
         if(is_null($product)){
-            return response()->json(['msg'=>'Empleado no encontrado'],404);
+            return response()->json(['msg'=>'Producto no encontrado'],404);
         }
         $product->update($request->all());
         return response($product, 200);
@@ -49,7 +49,7 @@ class ProductController extends Controller
     public function deleteProduct($id){
         $product = Product::find($id);
         if(is_null($product)){
-            return response()->json(['msg'=>'Empleado no encontrado'],404);
+            return response()->json(['msg'=>'Producto no encontrado'],404);
         }
         $product->delete();
         return response()->json(['msg'=>'Eliminado Correctamente'],200);

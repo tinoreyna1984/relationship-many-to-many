@@ -311,7 +311,19 @@ public function addProduct(Request $request){
 
 Notar que solo se necesita modificar para insertar producto, no actualizar ni borrar (debido a la restricción que aplica en cascada en base de datos).
 
+14. Si se quiere devolver datos de un modelo considerando elementos de la tabla intermedia (que estén anidados), se puede modificar el controlador así:
 
-
+```php
+class CategoryController extends Controller
+{
+    // devuelve todas las categorías
+    public function getCategories(){
+        //return response()->json(Category::all(), 200); // devuelve todas las categorías
+        $categories = Category::with('products')->get(); // <----- devuelve categorías anidando los productos
+        return response()->json($categories, 200);
+    }
+	//...
+}
+```
 
 
